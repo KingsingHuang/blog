@@ -1,0 +1,36 @@
+java传参的问题，可以通过如下三个例子进行说明：
+例一：
+public static void main(String[] args) {
+    String name="name";
+    change(name);
+    System.out.println(name);//打印结果为name
+}
+
+public static void change(String name){
+    name="changename";
+}
+
+例二：
+public static void main(String[] args) {
+    Map map=new HashMap();
+    map.put("name", name);
+    change(map);
+    System.out.println(map.get("name"));//打印结果为changename
+}
+public static void change(Map map){
+    map.put("name", "changename");
+} 
+
+例三：
+public static void main(String[] args) {
+    Map map=new HashMap();
+    map.put("name", name);
+    change(map);
+    System.out.println(map.get("name"));//打印结果为name
+}
+public static void change(Map map){
+    map=new HashMap();
+    map.put("name", "changename");
+}
+
+总结：如果形参是基本类型，实参传递传递给形参的是值，可以理解为把实参复制了一份给形参，在方法内对形参的操作，不会影响到实参的值。如果形参是引用类型，实参传递给形参的是引用，也就是说，形参指向的是实参的对象，在方法内对对形参所指向的对象进行修改，是会反映到实参所指向的对象的，但是一旦给形参重新指定对象的引用，那么对形参的修改就不会反映到实参所指向的对象了。
